@@ -1,0 +1,10 @@
+bin/*
+!bin/.gitkeep
+
+obj/*
+!obj/.gitkeep
+
+.vscode
+
+requirements.md
+*.zip
