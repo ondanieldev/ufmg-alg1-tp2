@@ -2,7 +2,8 @@
 #include <stdexcept>
 #include <algorithm>
 
-#include "Test.h"
+#include "Graph.h"
+#include "Edge.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ void assertRange(int value, int min, int max, string name)
   }
 }
 
-void processInput()
+Graph processInput()
 {
   int N, M, Q, maxM, i, u, v, w;
 
@@ -24,6 +25,8 @@ void processInput()
   assertRange(M, 1, maxM, "M");
   assertRange(Q, 1, 1000, "Q");
 
+  Graph graph = Graph(N);
+
   for (i = 0; i < M; ++i)
   {
     cin >> u >> v >> w;
@@ -32,6 +35,8 @@ void processInput()
     assertRange(w, 1, 100000, "w");
     if (u == v)
       throw invalid_argument("u and v must not be equal");
+    Edge edge = Edge(u, v, w);
+    graph.addEdge(edge);
   }
 
   for (i = 0; i < Q; ++i)
@@ -42,21 +47,19 @@ void processInput()
     if (u == v)
       throw invalid_argument("u and v must not be equal");
   }
-}
 
-void execute()
-{
-  processInput();
+  return graph;
 }
 
 int main()
 {
   try
   {
-    execute();
+    Graph graph = processInput();
+    graph.print(1);
   }
-  catch (const std::invalid_argument &e)
+  catch (const invalid_argument &e)
   {
-    std::cerr << e.what() << endl;
+    cerr << e.what() << endl;
   }
 }
