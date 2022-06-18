@@ -35,8 +35,7 @@ Graph processInput()
     assertRange(w, 1, 100000, "w");
     if (u == v)
       throw invalid_argument("u and v must not be equal");
-    Edge edge = Edge(u, v, w);
-    graph.addEdge(edge);
+    graph.addEdge(u, v, w);
   }
 
   for (i = 0; i < Q; ++i)
@@ -56,7 +55,6 @@ int main()
   try
   {
     Graph graph = processInput();
-    graph.print(1);
   }
   catch (const invalid_argument &e)
   {

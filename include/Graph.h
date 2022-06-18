@@ -19,8 +19,9 @@ public:
   Graph(){};
   Graph(int nodes);
   ~Graph();
-  void addEdge(Edge edge);
+  void addEdge(int src, int dst, int w);
   void print(int src);
+  int maxWeight(int src, int dst);
 };
 
 #endif

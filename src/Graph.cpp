@@ -17,9 +17,10 @@ Graph::~Graph()
   delete[] adjacencyList;
 }
 
-void Graph::addEdge(Edge edge)
+void Graph::addEdge(int src, int dst, int w)
 {
-  this->adjacencyList[edge.src].push_back(edge);
+  Edge edge = Edge(src, dst, w);
+  this->adjacencyList[src].push_back(edge);
 }
 
 void Graph::print(int src)
