@@ -6,13 +6,13 @@
 #include <algorithm>
 
 #include "Graph.h"
-#include "Edge.h"
+#include "Neighbor.h"
 
 #define INFINITY 100001
 
 Graph::Graph(int nodes)
 {
-  this->adjacencyList = new std::vector<Edge>[nodes];
+  this->adjacencyList = new std::vector<Neighbor>[nodes];
   this->nodes = nodes;
 }
 
@@ -23,16 +23,16 @@ Graph::~Graph()
 
 void Graph::addEdge(int src, int dst, int w)
 {
-  Edge edge = Edge(src, dst, w);
-  this->adjacencyList[src].push_back(edge);
+  Neighbor neighbor = Neighbor(dst, w);
+  this->adjacencyList[src].push_back(neighbor);
 }
 
 void Graph::print(int src)
 {
   std::cout << src << ": " << std::endl;
-  for (auto &edge : this->adjacencyList[src])
+  for (auto &neighbor : this->adjacencyList[src])
   {
-    std::cout << edge.dst << " (" << edge.weight << ")\t";
+    std::cout << neighbor.key << " (" << neighbor.weight << ")\t";
   }
   std::cout << std::endl;
 }
@@ -40,38 +40,38 @@ void Graph::print(int src)
 int Graph::maxWeight(int src, int dst)
 {
   int pi[this->nodes];
-  std::list<int> priorityQueue;
+  std::list<int> allVertexes;
 
   for (int v = 0; v < this->nodes; ++v)
   {
     pi[v] = INFINITY * (-1);
-    priorityQueue.push_back(v);
+    allVertexes.push_back(v);
   }
   pi[src] = INFINITY;
 
-  while (!priorityQueue.empty())
+  while (!allVertexes.empty())
   {
-    int u = priorityQueue.front();
-    for (auto &v : priorityQueue)
+    int u = allVertexes.front();
+    for (auto &v : allVertexes)
     {
       if (pi[v] > pi[u])
       {
         u = v;
       }
     }
-    priorityQueue.remove(u);
+    allVertexes.remove(u);
 
     if (pi[u] == (INFINITY * (-1)))
     {
       break;
     }
 
-    for (auto &edge : this->adjacencyList[u])
+    for (auto &neighbor : this->adjacencyList[u])
     {
-      int betterWeight = std::max(pi[edge.dst], std::min(pi[u], edge.weight));
-      if (betterWeight > pi[edge.dst])
+      int betterWeight = std::max(pi[neighbor.key], std::min(pi[u], neighbor.weight));
+      if (betterWeight > pi[neighbor.key])
       {
-        pi[edge.dst] = betterWeight;
+        pi[neighbor.key] = betterWeight;
       }
     }
   }

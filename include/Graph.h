@@ -1,19 +1,23 @@
 /*
-  TAD to store map as a graph
-  - graph implemented using adjacency list
+  TAD to store cities as a graph
+  - @attr nodes
+    is the number of vertexes in the graph
+  - @attr adjacencyList
+    is a list of each vertex neighbors
 */
 
 #ifndef GRAPH_H
 #define GRAPH_H
 
 #include <vector>
-#include "Edge.h"
+
+#include "Neighbor.h"
 
 class Graph
 {
 private:
   int nodes;
-  std::vector<Edge> *adjacencyList;
+  std::vector<Neighbor> *adjacencyList;
 
 public:
   Graph(){};
