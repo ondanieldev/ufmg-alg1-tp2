@@ -93,7 +93,7 @@ int Graph::maxWeight(int src, int dst)
     }
     allVertexes.remove(u);
 
-    // skip unoptmized vertex
+    // queue has elements but none of them can be accessed by the given source
     if (pi[u] == (INFINITY * (-1)))
     {
       break;
