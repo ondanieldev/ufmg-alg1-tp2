@@ -1,10 +1,7 @@
-/*
-  TAD to store vertex neighbors
-  - @attr key
-    is the neighbor id
-  - @attr weight
-    is the edge weight between the vertex and its neighbor
-*/
+/**
+ * @file Neighbor.h
+ * @brief TAD to store vertex neighbors
+ */
 
 #ifndef NEIGHBOR_H
 #define NEIGHBOR_H

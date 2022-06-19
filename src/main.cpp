@@ -3,10 +3,17 @@
 #include <algorithm>
 
 #include "Graph.h"
-#include "Edge.h"
 
 using namespace std;
 
+/**
+ * @brief check if the given value is between a min and max range
+ *
+ * @param value value to be checked
+ * @param min min range
+ * @param max max range
+ * @param name name of the param "value" to make easier when reading errors on terminal
+ */
 void assertRange(int value, int min, int max, string name)
 {
   if (value < min || value > max)
@@ -21,14 +28,15 @@ int main()
   {
     int N, M, Q, maxM, i, u, v, w;
 
+    // get N, M and Q inputs
     cin >> N >> M >> Q;
     maxM = min(N * (N - 1), 1000);
     assertRange(N, 2, 100, "N");
     assertRange(M, 1, maxM, "M");
     assertRange(Q, 1, 1000, "Q");
 
+    // read each edge input and add it to the graph
     Graph graph = Graph(N);
-
     for (i = 0; i < M; ++i)
     {
       cin >> u >> v >> w;
@@ -40,6 +48,7 @@ int main()
       graph.addEdge(u - 1, v - 1, w);
     }
 
+    // read each queue input and find the max weight can be send through the desired path
     for (i = 0; i < Q; ++i)
     {
       cin >> u >> v;

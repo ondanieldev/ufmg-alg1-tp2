@@ -1,10 +1,7 @@
-/*
-  TAD to store cities as a graph
-  - @attr nodes
-    is the number of vertexes in the graph
-  - @attr adjacencyList
-    is a list of each vertex neighbors
-*/
+/**
+ * @file Graph.h
+ * @brief TAD to store cities as a graph
+ */
 
 #ifndef GRAPH_H
 #define GRAPH_H
